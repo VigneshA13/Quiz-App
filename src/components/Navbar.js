@@ -19,10 +19,6 @@ const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Quiz App
         </Typography>
-        <Stack direction="row" spacing={2}>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">scoreboard</Button>
-        </Stack>
       </Toolbar>
     </AppBar>
   );

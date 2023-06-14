@@ -1,13 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import questionReducer from "./features/Question";
+import countReducer from "./features/Count";
+import AnswerReducer from "./features/Answer";
+import UserReducer from "./features/User";
+import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = configureStore({
+  reducer: {
+    question: questionReducer,
+    count: countReducer,
+    answer: AnswerReducer,
+    user: UserReducer,
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,7 +1,24 @@
 import { Box, TextField, Stack, Typography, Button } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { insert } from "../features/User";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+
+  let value = useSelector((state) => state.user.value);
+
+  const onclick = () => {
+    navigate("/questions");
+  };
+
+  const onchange = (event) => {
+    dispatch(insert(event.target.value));
+  };
+
   return (
     <Stack alignItems="center" justifyContent="center" sx={{ mt: "17vh" }}>
       <Box
@@ -31,13 +48,16 @@ const Home = () => {
                 label="Player name"
                 variant="outlined"
                 sx={{ mt: "-2vh", ml: "8vh", width: "45vh" }}
+                onChange={onchange}
+                value={value}
               />
             </Typography>
           </Box>
           <Box>
             <Button
               variant="contained"
-              sx={{ m: "7vh", ml: "25vh", width: "47vh", height: "7vh" }}>
+              sx={{ m: "7vh", ml: "25vh", width: "47vh", height: "7vh" }}
+              onClick={onclick}>
               Play Game
             </Button>
           </Box>
